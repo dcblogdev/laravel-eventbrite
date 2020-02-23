@@ -1,0 +1,32 @@
+{
+    "name": "dcblogdev/laravel-eventbrite",
+    "description": "A Laravel Eventbrite package",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "David Carr",
+            "email": "dave@dcblog.dev",
+            "homepage": "https://dcblog.dev"
+        }
+    ],
+    "homepage": "https://github.com/dcblogdev/laravel-eventbrite",
+    "keywords": ["Laravel", "Eventbrite"],
+    "require": {
+        "php": "^7.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Dcblogdev\\Eventbrite\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Dcblogdev\\Eventbrite\\EventbriteServiceProvider"
+            ],
+            "aliases": {
+                "Eventbrite": "Dcblogdev\\Eventbrite\\Facades\\Eventbrite"
+            }
+        }
+    }
+}
