@@ -3,11 +3,35 @@ declare(strict_types=1);
 
 namespace Dcblogdev\Eventbrite;
 
-use Dcblogdev\Eventbrite\Curl;
 use Exception;
+use Dcblogdev\Eventbrite\Curl;
+use Dcblogdev\Eventbrite\Resources\Events;
+use Dcblogdev\Eventbrite\Resources\Orders;
+use Dcblogdev\Eventbrite\Resources\Attendees;
+use Dcblogdev\Eventbrite\Resources\organizations;
 
 class Eventbrite
 {
+    public function events(): object
+    {
+        return new Events;
+    }
+
+    public function attendees(): object
+    {
+        return new Attendees;
+    }
+
+    public function orders(): object
+    {
+        return new Orders;
+    }
+
+    public function organizations(): object
+    {
+        return new organizations;
+    }
+
     public function __call(string $function, array $args)
     {
         $options = ['get', 'post', 'patch', 'put', 'delete'];
@@ -30,67 +54,5 @@ class Eventbrite
 
         $c = new Curl($url);
         return $c->$type($endpoint.'?token='.$key, $data);
-    }
-
-    public function organizations()
-    {
-        return $this->request('get', "/users/me/organizations");
-    }
-
-    public function events()
-    {
-        $organisationId = config('eventbrite.org');
-        return $this->request('get', "/organizations/$organisationId/events");
-    }
-
-    public function findEvent(int $event_id)
-    {
-        return $this->request('get', "/events/$event_id");
-    }
-
-    public function createEvent(array $event)
-    {
-        $organisationId = config('services.eventbrite.orgid');
-        return $this->request('post', "/organizations/$organisationId/events", $event);
-    }
-
-    public function updateEvent(int $event_id, array $event)
-    {
-        return $this->request('post', "/events/$event_id", $event);
-    }
-
-    public function cancelEvent(array $event_id)
-    {
-        return $this->request('post', "/events/$event_id/cancel");
-    }
-
-    public function deleteEvent(int $event_id)
-    {
-        return $this->request('delete', "/events/$event_id");
-    }
-
-    public function createEventTicketClass(int $event_id, array $event)
-    {
-        return $this->request('post', "/events/$event_id/ticket_classes", $event);
-    }
-
-    public function publishEvent(int $event_id)
-    {
-        return $this->request('post', "/events/$event_id/publish");
-    }
-
-    public function findOrder(int $order_id)
-    {
-        return $this->request('get', "/orders/$order_id");
-    }
-
-    public function attendees(int $event_id)
-    {
-        return $this->request('get', "/events/$event_id/attendees");
-    }
-
-    public function attendee(int $event_id, int $attendee_id)
-    {
-        return $this->request('get', "/events/$event_id/attendees/$attendee_id");
     }
 }

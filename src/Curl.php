@@ -61,6 +61,8 @@ class Curl
 
         //run request
         $response = curl_exec($ch);
+
+        $response = json_decode($response, true);
         
         //close request
         curl_close($ch);
