@@ -1,9 +1,12 @@
-# Laravel Eventbrite
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/dcblogdev/laravel-eventbrite.svg?style=flat-square)](https://packagist.org/packages/dcblogdev/laravel-eventbrite)
+[![Total Downloads](https://img.shields.io/packagist/dt/dcblogdev/laravel-eventbrite.svg?style=flat-square)](https://packagist.org/packages/dcblogdev/laravel-eventbrite)
+
+![Logo](https://repository-images.githubusercontent.com/242608028/89897400-49bf-11eb-8870-028ccfbcc7b2)
 
 A Laravel package for working with Eventbrite. In order to use this package you must have a Eventbrite application created at https://www.eventbrite.com/platform/
 
-# Full documentation and install instructions 
-[https://docs.dcblog.dev/laravel-eventbrite](https://docs.dcblog.dev/laravel-eventbrite)
+# Documentation and install instructions 
+[https://dcblog.dev/docs/laravel-eventbrite](https://dcblog.dev/docs/laravel-eventbrite)
 
 ## Change log
 
