@@ -20,7 +20,7 @@ class Events extends Eventbrite
 
     public function store(array $event): array
     {
-        $organisationId = config('services.eventbrite.orgid');
+        $organisationId = config('eventbrite.org');
         return Eventbrite::request('post', "/organizations/$organisationId/events", $event);
     }
 

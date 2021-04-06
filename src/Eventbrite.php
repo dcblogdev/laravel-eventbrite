@@ -5,16 +5,22 @@ namespace Dcblogdev\Eventbrite;
 
 use Exception;
 use Dcblogdev\Eventbrite\Curl;
-use Dcblogdev\Eventbrite\Resources\Events;
-use Dcblogdev\Eventbrite\Resources\Orders;
 use Dcblogdev\Eventbrite\Resources\Attendees;
-use Dcblogdev\Eventbrite\Resources\organizations;
+use Dcblogdev\Eventbrite\Resources\Events;
+use Dcblogdev\Eventbrite\Resources\EventTicketClasses;
+use Dcblogdev\Eventbrite\Resources\Orders;
+use Dcblogdev\Eventbrite\Resources\Organizations;
 
 class Eventbrite
 {
     public function events(): object
     {
         return new Events;
+    }
+
+    public function eventTicketClasses(): object
+    {
+        return new EventTicketClasses();
     }
 
     public function attendees(): object
@@ -29,7 +35,7 @@ class Eventbrite
 
     public function organizations(): object
     {
-        return new organizations;
+        return new Organizations;
     }
 
     public function __call(string $function, array $args)
