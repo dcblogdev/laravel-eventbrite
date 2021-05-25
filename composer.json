@@ -11,9 +11,6 @@
     ],
     "homepage": "https://github.com/dcblogdev/laravel-eventbrite",
     "keywords": ["Laravel", "Eventbrite"],
-    "require": {
-        "php": "^7.2"
-    },
     "autoload": {
         "psr-4": {
             "Dcblogdev\\Eventbrite\\": "src/"
