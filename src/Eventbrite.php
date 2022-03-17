@@ -58,10 +58,11 @@ class Eventbrite
     {
         $url      = 'https://www.eventbriteapi.com/v3';
         $key      = config('eventbrite.key');
-        $endpoint = $endpoint.'?token='.$key;
 
         if (strpos($endpoint, '?') !== false) {
             $endpoint = $endpoint.'&token='.$key;
+        } else {
+            $endpoint = $endpoint.'?token='.$key;
         }
 
         $c = new Curl($url);
