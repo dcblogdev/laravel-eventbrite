@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Dcblogdev\Eventbrite;
@@ -41,9 +42,9 @@ class Eventbrite
     public function __call(string $function, array $args)
     {
         $options = ['get', 'post', 'patch', 'put', 'delete'];
-        $path = (isset($args[0])) ? $args[0] : null;
-        $data = (isset($args[1])) ? $args[1] : null;
-        $header = (isset($args[2])) ? $args[2] : null;
+        $path    = (isset($args[0])) ? $args[0] : null;
+        $data    = (isset($args[1])) ? $args[1] : null;
+        $header  = (isset($args[2])) ? $args[2] : null;
 
         if (in_array($function, $options)) {
             return self::request($function, $path, $data, $header);
@@ -52,13 +53,18 @@ class Eventbrite
             throw new Exception($function.' is not a valid HTTP Verb');
         }
     }
-    
+
     public function request(string $type, string $endpoint, array $data = [])
     {
-        $url = 'https://www.eventbriteapi.com/v3';
-        $key = config('eventbrite.key');
+        $url      = 'https://www.eventbriteapi.com/v3';
+        $key      = config('eventbrite.key');
+        $endpoint = $endpoint.'?token='.$key;
+
+        if (strpos($endpoint, '?') !== false) {
+            $endpoint = $endpoint.'&token='.$key;
+        }
 
         $c = new Curl($url);
-        return $c->$type($endpoint.'?token='.$key, $data);
+        return $c->$type($endpoint, $data);
     }
 }
