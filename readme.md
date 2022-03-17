@@ -5,8 +5,89 @@
 
 A Laravel package for working with Eventbrite. In order to use this package you must have a Eventbrite application created at https://www.eventbrite.com/platform/
 
-# Documentation and install instructions 
-[https://dcblog.dev/docs/laravel-eventbrite](https://dcblog.dev/docs/laravel-eventbrite)
+Eventbrite API documentation can be found at:
+https://www.eventbrite.com/platform/docs/introduction
+
+# Application Register
+To use Eventbrite API an application needs creating at https://www.eventbrite.co.uk/account-settings/apps
+
+Click the Create API Key button then fill in the form
+
+# Install
+
+Via Composer
+
+```
+composer require dcblogdev/laravel-eventbrite
+```
+
+## Config
+
+You can publish the config file with:
+
+```
+php artisan vendor:publish --provider="Dcblogdev\Eventbrite\EventbriteServiceProvider" --tag="config"
+```
+
+When published, the config/box.php config file contains:
+
+```
+return [
+    'key' => env('EVENTBRITE_KEY'),
+    'org' => env('EVENTBRITE_ORG_ID'),
+];
+```
+
+.ENV Configuration
+You should add the env variables to your .env file, this allows you to use a different application on different servers.
+
+```
+EVENTBRITE_KEY needs your application key
+
+EVENTBRITE_ORG_ID can be used to set your organisation.
+
+EVENTBRITE_KEY=
+EVENTBRITE_ORG_ID=
+```
+
+## Usage
+
+Import Namespace
+
+```php
+use Dcblogdev\Eventbrite\Facades\Eventbrite;
+```
+
+A routes example:
+
+```php
+Route::get('eventbrite', function() {
+
+    //get all events
+    Eventbrite::events(); 
+    
+});
+```
+
+Calls can be made by referencing Eventbrite:: then the verb get,post,put,patch or delete followed by the end point to call. An array can be passed as a second option.
+
+The end points are relative paths after https://www.eventbriteapi.com/v3/
+
+Example GET request
+
+```php
+Eventbrite::get('users/me/organizations');
+```
+
+The formula is:
+
+```php
+Eventbrite::get('path', $array);
+Eventbrite::post('path', $array);
+Eventbrite::put('path', $array);
+Eventbrite::patch('path', $array);
+Eventbrite::delete('path', $array);
+```
 
 ## Change log
 
